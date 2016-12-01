@@ -58,7 +58,7 @@
     <Compile Include="RedisClient\RedisStringClient.cs" />
     <Compile Include="RedisTaskQueue.cs" />
     <Compile Include="TaskMessageRedisContainer.cs" />
-    <Compile Include="TaskResultRedisClient.cs" />
+    <Compile Include="TaskResultContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

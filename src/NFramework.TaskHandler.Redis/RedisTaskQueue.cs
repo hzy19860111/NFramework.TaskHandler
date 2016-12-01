@@ -14,7 +14,8 @@ namespace NFramework.TaskHandler.Redis
         private string _redisAppName;
         private string _taskQueueType;
         private int _taskQueueIndex;
-        private TaskResultRedisClient _resultRedisClient;
+        private ITaskResultContainer _taskResultContainer;
+        public ITaskResultContainer TaskResultContainer { get { return _taskResultContainer; } }
 
         public RedisTaskQueue(string redisAppName, string taskQueueType, int taskQueueIndex)
         {
@@ -26,7 +27,7 @@ namespace NFramework.TaskHandler.Redis
             this._redisAppName = redisAppName;
             this._taskQueueType = taskQueueType;
             this._taskQueueIndex = taskQueueIndex;
-            this._resultRedisClient = new TaskResultRedisClient(this._redisAppName);
+            this._taskResultContainer = new TaskResultContainer(this._redisAppName);
         }
 
         public int TaskQueueIndex { get { return _taskQueueIndex; } }
@@ -41,12 +42,12 @@ namespace NFramework.TaskHandler.Redis
         public bool SetTaskResult(T message, TaskResult result)
         {
             //默认10分钟过期
-            return _resultRedisClient.Set(message.Id, result, TimeSpan.FromMinutes(10));
+            return TaskResultContainer.Set(message.Id, result, TimeSpan.FromMinutes(10));
         }
 
         public Task<bool> SetTaskResultAsync(T message, TaskResult result)
         {
-            return _resultRedisClient.SetAsync(message.Id, result, TimeSpan.FromMinutes(10));
+            return TaskResultContainer.SetAsync(message.Id, result, TimeSpan.FromMinutes(10));
         }
     }
 }

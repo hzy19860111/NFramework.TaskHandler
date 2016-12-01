@@ -8,6 +8,8 @@ namespace NFramework.TaskHandler
 {
     public interface ITaskQueue<T> where T : TaskMessageBase
     {
+        ITaskResultContainer TaskResultContainer { get; }
+
         string TaskQueueType { get; }
 
         int TaskQueueIndex { get; }
