@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -50,15 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\RedisSection.cs" />
+    <Compile Include="Consts.cs" />
     <Compile Include="RedisClient\IDatabaseExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisClient\RedisClient.cs" />
     <Compile Include="RedisClient\RedisConnectionManager.cs" />
     <Compile Include="RedisClient\RedisQueueClient.cs" />
     <Compile Include="RedisClient\RedisStringClient.cs" />
+    <Compile Include="RedisTaskMessageBase.cs" />
     <Compile Include="RedisTaskQueue.cs" />
-    <Compile Include="TaskMessageRedisContainer.cs" />
-    <Compile Include="TaskResultContainer.cs" />
+    <Compile Include="RedisTaskMessageContainer.cs" />
+    <Compile Include="RedisTaskResultContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -22,8 +22,19 @@ namespace NFramework.TaskHandler.Redis
             this._redisSeciton = ConfigurationManager.GetSection("RedisSection") as RedisSection;
             if (this._redisSeciton == null)
                 throw new TaskHandlerException("未找到RedisSection配置信息!");
-            this._redisConnection = new ConcurrentDictionary<string, ConnectionMultiplexer>();
+
+            this.InitRedisConnection();
+
             this._syncRoot = new object();
+        }
+
+        private void InitRedisConnection()
+        {
+            this._redisConnection = new ConcurrentDictionary<string, ConnectionMultiplexer>();
+            foreach (RedisDB redisDB in this._redisSeciton.RedisDBs)
+            {
+                this._redisConnection.TryAdd(redisDB.Name, ConnectionMultiplexer.Connect(redisDB.ConnectionString));
+            }
         }
 
         public ConnectionMultiplexer GetConnection(RedisDB redisDB)

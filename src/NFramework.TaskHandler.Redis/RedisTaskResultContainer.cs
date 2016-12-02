@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace NFramework.TaskHandler.Redis
 {
-    public class TaskResultContainer : RedisStringClient<TaskResult>, ITaskResultContainer
+    public class RedisTaskResultContainer : RedisStringClient<TaskResult>, ITaskResultContainer
     {
         private string _redisAppName;
 
-        public TaskResultContainer(string redisAppName)
+        public RedisTaskResultContainer(string redisAppName)
         {
             this._redisAppName = redisAppName;
         }

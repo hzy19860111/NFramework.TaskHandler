@@ -13,7 +13,5 @@ namespace NFramework.TaskHandler.Consts
         /// </summary>
         public const string Default_TaskResult_Prefix = "NF:TaskHandler:TaskResult:";
         public const string Default_TaskQueue_Prefix = "NF:TaskHandler:TaskQueue:";
-
-        public const string Default_TaskHandler_RedisAppName = "NF_TaskHandler";
     }
 }

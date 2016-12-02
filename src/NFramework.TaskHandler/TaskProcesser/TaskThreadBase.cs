@@ -25,6 +25,8 @@ namespace NFramework.TaskHandler
             this.log = log;
         }
 
+        protected abstract TTaskHandler CreateHandler();
+
         public void HandleTask(object obj)
         {
             TMessage message = null;
@@ -66,8 +68,6 @@ namespace NFramework.TaskHandler
             }
             log.InfoFormat("【{0}_{1}】停止运行", taskQueue.TaskQueueType, taskQueue.TaskQueueIndex.ToString());
         }
-
-        protected abstract TTaskHandler CreateHandler();
 
         public void SetThread(Thread thread)
         {

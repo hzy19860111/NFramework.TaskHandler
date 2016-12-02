@@ -24,6 +24,7 @@ namespace NFramework.TaskHandler
         public TaskMessageBase()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.RoutingKey = this.Id;//默认路由key 为消息Id
         }
 
         public TaskMessageBase(string routingKey)
@@ -42,7 +43,7 @@ namespace NFramework.TaskHandler
         /// <summary>
         /// 消息队列数量
         /// </summary>
-        protected virtual int QueueCount { get { return TaskQueueConsts.Default_TaskQueue_Count; } }
+        public virtual int TaskQueueCount { get { return TaskQueueConsts.Default_TaskQueue_Count; } }
 
         #region Required Properties
 
@@ -63,9 +64,9 @@ namespace NFramework.TaskHandler
         /// <summary>
         /// 消息数据
         /// </summary>
-        public dynamic Data { get; set; }
+        public object Data { get; set; }
 
-        public TaskMessageBase SetData(dynamic data)
+        public TaskMessageBase SetData(object data)
         {
             this.Data = data;
             return this;
@@ -104,12 +105,18 @@ namespace NFramework.TaskHandler
 
         #region Send
 
+        protected virtual bool LogSuccessMessage
+        {
+            get { return false; }
+        }
+
         public void Send()
         {
             try
             {
                 InternalSend();
-                Log.InfoFormat("消息发送成功,{0}", this.ToString());
+                if (LogSuccessMessage)
+                    Log.InfoFormat("消息发送成功,{0}", this.ToString());
             }
             catch (Exception ex)
             {

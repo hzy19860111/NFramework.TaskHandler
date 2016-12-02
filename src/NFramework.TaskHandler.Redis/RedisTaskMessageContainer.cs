@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NFramework.TaskHandler.Redis
 {
-    public class TaskMessageRedisContainer<T> : ITaskMessageContainer<T> where T : TaskMessageBase
+    public class RedisTaskMessageContainer<T> : ITaskMessageContainer<T> where T : TaskMessageBase
     {
         private IRouting _iRouting;
 
@@ -17,7 +17,7 @@ namespace NFramework.TaskHandler.Redis
             get { return this._iRouting; }
         }
 
-        public TaskMessageRedisContainer()
+        public RedisTaskMessageContainer()
         {
             _iRouting = new HashRouting();
         }
@@ -26,12 +26,12 @@ namespace NFramework.TaskHandler.Redis
         /// 可通过构造函数注入自定义路由规则
         /// </summary>
         /// <param name="iRouting"></param>
-        public TaskMessageRedisContainer(IRouting iRouting)
+        public RedisTaskMessageContainer(IRouting iRouting)
         {
             this._iRouting = iRouting;
         }
 
-        public virtual string RedisAppName { get { return TaskHandlerConsts.Default_TaskHandler_RedisAppName; } }
+        public virtual string RedisAppName { get { return Consts.Default_TaskHandler_RedisAppName; } }
 
         /// <summary>
         /// 根据队列类型、路由Key 推送到队列
@@ -41,9 +41,9 @@ namespace NFramework.TaskHandler.Redis
         /// <param name="queueType"></param>
         /// <param name="message"></param>
         /// <param name="taskQueueCount"></param>
-        public void Push(T message, int taskQueueCount)
+        public void Send(T message)
         {
-            var queue = GetTaskQueue(message.RoutingKey, message.TaskType, taskQueueCount);
+            var queue = GetTaskQueue(message.RoutingKey, message.TaskType, message.TaskQueueCount);
             queue.Push(message);
 
             message.SendAfter(this.RedisAppName);
@@ -70,7 +70,7 @@ namespace NFramework.TaskHandler.Redis
         }
     }
 
-    public class TaskMessageRedisContainer : TaskMessageRedisContainer<TaskMessageBase>
+    public class RedisTaskMessageContainer : RedisTaskMessageContainer<TaskMessageBase>
     {
     }
 }

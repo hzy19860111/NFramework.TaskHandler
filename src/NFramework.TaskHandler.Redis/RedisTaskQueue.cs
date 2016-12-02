@@ -27,7 +27,7 @@ namespace NFramework.TaskHandler.Redis
             this._redisAppName = redisAppName;
             this._taskQueueType = taskQueueType;
             this._taskQueueIndex = taskQueueIndex;
-            this._taskResultContainer = new TaskResultContainer(this._redisAppName);
+            this._taskResultContainer = new RedisTaskResultContainer(this._redisAppName);
         }
 
         public int TaskQueueIndex { get { return _taskQueueIndex; } }
