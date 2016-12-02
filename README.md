@@ -13,7 +13,7 @@ ERP：
 
 ## 框架时序图
 
-![框架时序图](NFramework.TaskHandler/blob/master/resource/nframeworksequencediagram.png)
+![框架时序图](https://github.com/hzy19860111/NFramework.TaskHandler/blob/master/resource/nframeworksequencediagram.png)
 
 ## 框架处理流程
 
