@@ -70,10 +70,15 @@
     <Compile Include="TaskResult\ITaskResultContainer.cs" />
     <Compile Include="TaskResult\TaskResult.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="框架时序图.sequencediagram.layout">
+      <DependentUpon>框架时序图.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="框架时序图.sequencediagram" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
