@@ -36,7 +36,7 @@ namespace NFramework.TaskHandler.Redis
 
         protected override string QueueType
         {
-            get { return TaskHandlerConsts.Default_TaskQueue_Prefix + _taskQueueType + ":" + _taskQueueIndex.ToString(); }
+            get { return Consts.Default_TaskQueue_Prefix + _taskQueueType + ":" + _taskQueueIndex.ToString(); }
         }
 
         public bool SetTaskResult(T message, TaskResult result)

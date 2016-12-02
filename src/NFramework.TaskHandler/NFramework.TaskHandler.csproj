@@ -58,7 +58,6 @@
     <Compile Include="TaskMessageBase.cs" />
     <Compile Include="TaskProcesser\TaskProcesserBase.cs" />
     <Compile Include="TaskProcesser\TaskThreadBase.cs" />
-    <Compile Include="Consts\TaskHandlerConsts.cs" />
     <Compile Include="Exceptions\TaskHandlerException.cs" />
     <Compile Include="ITaskHandler.cs" />
     <Compile Include="ITaskMessageContainer.cs" />

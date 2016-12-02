@@ -19,7 +19,7 @@ namespace NFramework.TaskHandler.Redis
 
         protected override string GetRealKey(string key)
         {
-            return TaskHandlerConsts.Default_TaskResult_Prefix + key;
+            return Consts.Default_TaskResult_Prefix + key;
         }
 
         protected override string RedisAppName { get { return this._redisAppName; } }

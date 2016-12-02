@@ -9,7 +9,7 @@ namespace NFramework.TaskHandler.Consts
     public class TaskQueueConsts
     {
         /// <summary>
-        /// 默认任务队列的数量(todo:配置中心读取)
+        /// 默认任务队列的数量
         /// </summary>
         public const int Default_TaskQueue_Count = 5;
     }
