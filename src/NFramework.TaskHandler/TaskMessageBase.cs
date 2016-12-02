@@ -134,8 +134,11 @@ namespace NFramework.TaskHandler
 
         public void Retry()
         {
-            this.RetryCount--;
-            this.Send();
+            if (this.RetryCount > 0)
+            {
+                this.RetryCount--;
+                this.Send();
+            }
         }
 
         #endregion
