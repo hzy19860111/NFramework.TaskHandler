@@ -14,6 +14,17 @@ namespace NFramework.TaskHandler.QuickStart.Core
             get { return Consts.TestTaskType; }
         }
 
+        /// <summary>
+        /// 这里可通过重写 配置 任务队列数量
+        /// </summary>
+        protected override int TaskQueueCount
+        {
+            get
+            {
+                return Consts.TestTaskQueueCount;
+            }
+        }
+
         protected override ITaskMessageContainer<TestTaskMessage> CreateTaskMessageContainer()
         {
             return new RedisTaskMessageContainer<TestTaskMessage>();

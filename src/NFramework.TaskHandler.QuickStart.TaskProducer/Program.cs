@@ -26,7 +26,7 @@ namespace NFramework.TaskHandler.QuickStart.TaskProducer
             Random random = new Random();
 
             //循环中使用Task https://github.com/StackExchange/StackExchange.Redis/issues/532 有这个问题，这里初始化下RedisClient中的延迟表达式
-            //当然也可以不适用Lazy
+            //当然也可以不使用Lazy
             RedisTaskResultContainer container = new RedisTaskResultContainer("NF_TaskHandler");
             container.Get("1");
         
@@ -39,7 +39,6 @@ namespace NFramework.TaskHandler.QuickStart.TaskProducer
 
                     data.Number1 = random.Next(1, 1000);
                     data.Number2 = random.Next(1, 1000);
-                    message.RoutingKey = i.ToString();
                     message.SetData(data).Send();
 
                     TaskResult result = message.AwaitTaskResult();

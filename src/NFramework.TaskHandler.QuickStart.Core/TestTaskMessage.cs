@@ -30,16 +30,16 @@ namespace NFramework.TaskHandler.QuickStart.Core
         //    }
         //}
 
-        ///// <summary>
-        ///// 这里重写任务队列数量
-        ///// </summary>
-        //public override int TaskQueueCount
-        //{
-        //    get
-        //    {
-        //        return base.TaskQueueCount;
-        //    }
-        //}
+        /// <summary>
+        /// 这里通过重写 配置 任务队列数量
+        /// </summary>
+        public override int TaskQueueCount
+        {
+            get
+            {
+                return Consts.TestTaskQueueCount;
+            }
+        }
 
         /// <summary>
         /// 任务类型：不能重复

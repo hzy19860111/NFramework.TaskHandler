@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace NFramework.TaskHandler
 {
-    public static class JsonObjectExtensions
+    public class JsonObjectExtensions
     {
-        public static T ToObject<T>(this JObject jObj)
+        public static T ToObject<T>(object obj)
         {
-            return jObj.ToObject<T>();
+            return ((JObject)obj).ToObject<T>();
         }
 
-        public static T[] ToArray<T>(this JArray jArray)
+        public static T[] ToArray<T>(object obj)
         {
-            return jArray.ToArray<T>();
+            return ((JArray)obj).ToObject<T[]>();
         }
     }
 }

@@ -19,8 +19,7 @@ namespace NFramework.TaskHandler.QuickStart.Core
         {
             try
             {
-                //由于使用Newtonsoft.Json序列化，Message中的Object会反序列化为JObject对象，需要特殊处理
-                TestMessageData data = JsonObjectExtensions.ToObject<TestMessageData>((JObject)message.Data);
+                TestMessageData data = JsonObjectExtensions.ToObject<TestMessageData>(message.Data);
                 return new TaskResult(true, data: (data.Number1 + data.Number2).ToString());
             }
             catch (TaskHandlerException ex)
