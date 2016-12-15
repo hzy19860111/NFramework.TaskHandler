@@ -32,7 +32,7 @@ namespace NFramework.TaskHandler.QuickStart.TaskHandler
         {
             SetConsoleCtrlHandler(cancelHandler, true);
 
-            FileInfo file = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "Log4Net.config");
+            FileInfo file = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log4Net.config"));
             log4net.Config.XmlConfigurator.Configure(file);
 
             testTaskProcesser = new TestTaskProcesser();

@@ -29,17 +29,20 @@ namespace NFramework.TaskHandler.QuickStart.TaskProducer
             //当然也可以不使用Lazy
             RedisTaskResultContainer container = new RedisTaskResultContainer("NF_TaskHandler");
             container.Get("1");
-        
+
 
             for (int i = 0; i < totalCount; i++)
             {
-                Task.Run(() => {
+                Task.Run(() =>
+                {
                     TestTaskMessage message = new TestTaskMessage();
                     TestMessageData data = new TestMessageData();
 
                     data.Number1 = random.Next(1, 1000);
                     data.Number2 = random.Next(1, 1000);
-                    message.SetData(data).Send();
+
+                    //设置重试次数3
+                    message.SetData(data).SetRetry(3).Send();
 
                     TaskResult result = message.AwaitTaskResult();
 

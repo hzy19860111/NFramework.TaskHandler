@@ -19,6 +19,11 @@ namespace NFramework.TaskHandler.QuickStart.Core
         {
             try
             {
+                Random rnd = new Random();
+                int random = rnd.Next(10);
+                if (random < 5)
+                    throw new Exception("随机异常！");
+
                 TestMessageData data = JsonObjectExtensions.ToObject<TestMessageData>(message.Data);
                 return new TaskResult(true, data: (data.Number1 + data.Number2).ToString());
             }

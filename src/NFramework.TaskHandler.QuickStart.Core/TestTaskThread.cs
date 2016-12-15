@@ -21,10 +21,9 @@ namespace NFramework.TaskHandler.QuickStart.Core
             Thread thread = new Thread(obj.HandleTask);
             thread.IsBackground = true;
             obj.SetThread(thread);
+            thread.Start();
 
             log.InfoFormat("【{0}_{1}】任务处理线程已开启...", queue.TaskQueueType, queue.TaskQueueIndex.ToString());
-
-            thread.Start();
             return obj;
         }
 
