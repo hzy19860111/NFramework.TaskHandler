@@ -7,8 +7,8 @@
     <ProjectGuid>{11116FB8-4E2A-4FCC-B534-E6C0F1CD4E8C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NFramework.TaskHandler.QuickStart.TaskHandler</RootNamespace>
-    <AssemblyName>NFramework.TaskHandler.QuickStart.TaskHandler</AssemblyName>
+    <RootNamespace>NFramework.TaskHandler.QuickStart.TaskProcessor</RootNamespace>
+    <AssemblyName>NFramework.TaskHandler.QuickStart.TaskProcessor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

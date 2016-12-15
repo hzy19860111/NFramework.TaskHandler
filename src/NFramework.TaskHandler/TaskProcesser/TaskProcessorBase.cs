@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NFramework.TaskHandler
 {
-    public abstract class TaskProcesserBase<TMessage, TTaskHandler, TTaskThread>
+    public abstract class TaskProcessorBase<TMessage, TTaskHandler, TTaskThread>
         where TMessage : TaskMessageBase
         where TTaskHandler : TaskHandlerBase<TMessage>
         where TTaskThread : TaskThreadBase<TMessage, TTaskHandler>
@@ -22,7 +22,7 @@ namespace NFramework.TaskHandler
         protected virtual int TaskQueueCount { get { return TaskQueueConsts.Default_TaskQueue_Count; } }
         private System.Timers.Timer timer;
 
-        public TaskProcesserBase()
+        public TaskProcessorBase()
         {
             this.MessageContainer = this.CreateTaskMessageContainer();
             this.Threads = new List<TTaskThread>();

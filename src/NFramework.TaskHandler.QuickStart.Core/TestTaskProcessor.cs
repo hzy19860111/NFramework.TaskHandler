@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NFramework.TaskHandler.QuickStart.Core
 {
-    public class TestTaskProcesser : TaskProcesserBase<TestTaskMessage, TestTaskHandler, TestTaskThread>
+    public class TestTaskProcessor : TaskProcessorBase<TestTaskMessage, TestTaskHandler, TestTaskThread>
     {
         protected override string TaskQueueType
         {

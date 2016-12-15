@@ -26,7 +26,7 @@ namespace NFramework.TaskHandler.QuickStart.TaskHandler
             return false;
         }
 
-        private static TestTaskProcesser testTaskProcesser;
+        private static TestTaskProcessor testTaskProcesser;
 
         static void Main(string[] args)
         {
@@ -35,7 +35,7 @@ namespace NFramework.TaskHandler.QuickStart.TaskHandler
             FileInfo file = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log4Net.config"));
             log4net.Config.XmlConfigurator.Configure(file);
 
-            testTaskProcesser = new TestTaskProcesser();
+            testTaskProcesser = new TestTaskProcessor();
             testTaskProcesser.StartThread();
 
             Console.ReadLine();

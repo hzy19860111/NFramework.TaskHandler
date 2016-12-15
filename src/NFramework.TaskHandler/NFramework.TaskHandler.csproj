@@ -56,7 +56,7 @@
     <Compile Include="JsonObjectExtensions.cs" />
     <Compile Include="TaskHandlerBase.cs" />
     <Compile Include="TaskMessageBase.cs" />
-    <Compile Include="TaskProcesser\TaskProcesserBase.cs" />
+    <Compile Include="TaskProcesser\TaskProcessorBase.cs" />
     <Compile Include="TaskProcesser\TaskThreadBase.cs" />
     <Compile Include="Exceptions\TaskHandlerException.cs" />
     <Compile Include="ITaskHandler.cs" />

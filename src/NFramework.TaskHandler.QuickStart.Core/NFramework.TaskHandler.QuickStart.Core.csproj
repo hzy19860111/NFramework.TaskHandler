@@ -54,7 +54,7 @@
     <Compile Include="TestMessageData.cs" />
     <Compile Include="TestTaskHandler.cs" />
     <Compile Include="TestTaskMessage.cs" />
-    <Compile Include="TestTaskProcesser.cs" />
+    <Compile Include="TestTaskProcessor.cs" />
     <Compile Include="TestTaskThread.cs" />
   </ItemGroup>
   <ItemGroup>
