@@ -83,7 +83,7 @@ namespace NFramework.TaskHandler
         /// <summary>
         /// 重试次数
         /// </summary>
-        public int RetryCount { get; private set; }
+        public int RetryCount { get; set; }
 
         /// <summary>
         /// 设置重试次数
@@ -110,6 +110,14 @@ namespace NFramework.TaskHandler
             get { return false; }
         }
 
+        public virtual bool SetTaskResult
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         public void Send()
         {
             try
@@ -125,12 +133,12 @@ namespace NFramework.TaskHandler
             }
         }
 
+        public void AfterSend()
+        {
+            this._hasSent = true;
+        }
+
         protected abstract void InternalSend();
-        //{
-        //    //默认使用hash路由 和 默认的队列数量（重写方法 可更改）
-        //    TaskMessageRedisContainer sender = new TaskMessageRedisContainer();
-        //    sender.Push(this, TaskQueueConsts.Default_TaskQueue_Count);
-        //}
 
         public void Retry()
         {
@@ -149,21 +157,6 @@ namespace NFramework.TaskHandler
         /// 是否已发送
         /// </summary>
         private bool _hasSent = false;
-
-        /// <summary>
-        /// appName
-        /// </summary>
-        private string _redisAppName;
-
-        /// <summary>
-        /// 消息发送后必须调用该方法，否则无法获取 消息结果
-        /// </summary>
-        /// <param name="redisAppName"></param>
-        public void SendAfter(string redisAppName)
-        {
-            this._hasSent = true;
-            this._redisAppName = redisAppName;
-        }
 
         protected abstract ITaskResultContainer TaskResultContainer { get; }
 
@@ -188,7 +181,11 @@ namespace NFramework.TaskHandler
         /// <returns></returns>
         public TaskResult AwaitTaskResult(int timeOut)
         {
-            if (!this._hasSent || string.IsNullOrWhiteSpace(this._redisAppName))
+            //设置 不回写TaskResult，直接返回成功的Result
+            if (!this.SetTaskResult)
+                return new TaskResult();
+            //如果未发送消息或未设置redisApp
+            if (!this._hasSent)
                 return TaskResult.NotSend;
 
             //最大超时时间5分钟

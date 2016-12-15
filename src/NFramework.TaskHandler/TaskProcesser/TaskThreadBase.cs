@@ -53,8 +53,12 @@ namespace NFramework.TaskHandler
                     if (message != null && message.Retried)
                     {
                         message.Retry();
+                        log.Error(string.Format("【{0}_{1}】消息处理失败，开始重试！原因：{2}，消息：{3}", taskQueue.TaskQueueType, taskQueue.TaskQueueIndex.ToString(), ex.Message, message == null ? "" : message.ToString()), ex);
                     }
-                    log.Error(string.Format("【{0}_{1}】消息处理失败，原因：{2}，消息：{3}", taskQueue.TaskQueueType, taskQueue.TaskQueueIndex.ToString(), ex.Message, message == null ? "" : message.ToString()), ex);
+                    else
+                    {
+                        log.Error(string.Format("【{0}_{1}】消息处理失败，原因：{2}，消息：{3}", taskQueue.TaskQueueType, taskQueue.TaskQueueIndex.ToString(), ex.Message, message == null ? "" : message.ToString()), ex);
+                    }
                 }
                 catch (ThreadAbortException ex)
                 {

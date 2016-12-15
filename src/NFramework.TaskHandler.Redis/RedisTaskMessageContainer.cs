@@ -45,8 +45,7 @@ namespace NFramework.TaskHandler.Redis
         {
             var queue = GetTaskQueue(message.RoutingKey, message.TaskType, message.TaskQueueCount);
             queue.Push(message);
-
-            message.SendAfter(this.RedisAppName);
+            message.AfterSend();
         }
 
         public IEnumerable<ITaskQueue<T>> GetTaskQueues(string queueType, int queueCount)

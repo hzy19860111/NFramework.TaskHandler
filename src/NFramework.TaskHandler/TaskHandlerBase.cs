@@ -20,9 +20,17 @@ namespace NFramework.TaskHandler
         public void Handle(T message)
         {
             TaskResult taskResult = InternalHandle(message);
-            //TaskResult为NULL 为失败重试，不需要设置结果
-            if (taskResult != null)
-                taskQueue.SetTaskResult(message, taskResult);
+            //处理成功 或 处理失败并且未设置重试的消息，回写TaskResult
+            if (taskResult.Success || (!taskResult.Success && !message.Retried))
+            {
+                if (message.SetTaskResult)
+                    taskQueue.SetTaskResult(message, taskResult);
+            }
+            else
+            {
+                message.Retry();
+                log.InfoFormat("【{0}_{1}】 消息开始重试，消息Id：{2}，当前RetryCount：{3}", taskQueue.TaskQueueType, taskQueue.TaskQueueIndex.ToString(), message.Id, message.RetryCount);
+            }
         }
 
         protected abstract TaskResult InternalHandle(T message);

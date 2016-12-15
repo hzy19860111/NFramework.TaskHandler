@@ -14,9 +14,7 @@ namespace NFramework.TaskHandler
         /// <summary>
         /// 发送消息
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="message"></param>
-        /// <param name="taskQueueCount"></param>
         void Send(T message);
 
         IEnumerable<ITaskQueue<T>> GetTaskQueues(string queueType, int queueCount);
