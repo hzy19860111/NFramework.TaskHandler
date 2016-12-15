@@ -15,7 +15,6 @@ namespace NFramework.TaskHandler.Redis
     {
         private RedisSection _redisSeciton;
         private ConcurrentDictionary<string, ConnectionMultiplexer> _redisConnection;
-        private object _syncRoot;
 
         public RedisConnectionManager()
         {
@@ -24,8 +23,6 @@ namespace NFramework.TaskHandler.Redis
                 throw new TaskHandlerException("未找到RedisSection配置信息!");
 
             this.InitRedisConnection();
-
-            this._syncRoot = new object();
         }
 
         private void InitRedisConnection()
