@@ -15,9 +15,9 @@ ERP：
 
 ![框架时序图](https://github.com/hzy19860111/NFramework.TaskHandler/blob/master/resource/nframeworksequencediagram.png)
 
-## 框架处理流程
+## 架构图
 
-todo
+![框架架构图](https://github.com/hzy19860111/NFramework.TaskHandler/blob/master/resource/arch.png)
 
 ## 框架特点
 * 可水平扩展
